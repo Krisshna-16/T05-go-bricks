@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-green: #00FF41;
+  --color-brand-dark-green: #00B32C;
+  --color-brand-darker-green: #00661A;
+  --color-charcoal-card: #1A1A1A;
+  --color-charcoal-border: #2E2E2E;
+  --color-black-main: #0A0A0A;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  
+  --animate-fade-in: fade-in 0.25s ease-out;
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2E2E2E;
+  border-radius: 4px;
+  border: 2px solid #0A0A0A;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00FF41;
+}
+
+/* Base style resets */
+html, body {
+  background-color: #0A0A0A;
+  color: #FFFFFF;
+  font-family: 'Inter', system-ui, sans-serif;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Glow effects */
+.glow-green-text {
+  text-shadow: 0 0 8px rgba(0, 255, 65, 0.4), 0 0 16px rgba(0, 255, 65, 0.1);
+}
+
+.glow-green-box {
+  box-shadow: 0 0 12px rgba(0, 255, 65, 0.03);
+  border-color: rgba(0, 255, 65, 0.12);
+  transition: all 0.2s ease-in-out;
+}
+
+.glow-green-box:hover {
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.12);
+  border-color: rgba(0, 255, 65, 0.3);
+}
+
+/* Print CSS Styles */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 1.2cm;
+  }
+  
+  html, body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 10pt !important;
+    line-height: 1.4 !important;
+  }
+
+  #root {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    display: block !important;
+    min-height: auto !important;
+  }
+
+  /* Hide tabs navigation, print trigger buttons, etc. */
+  .no-print {
+    display: none !important;
+  }
+
+  /* Force all tabs to display sequentially for print layouts */
+  .print-force-block {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    margin-bottom: 2.5rem !important;
+    page-break-after: always !important;
+  }
+
+  .print-force-block:last-child {
+    page-break-after: avoid !important;
+  }
+
+  /* Page break rules for sub-elements */
+  .print-avoid-break {
+    page-break-inside: avoid !important;
+  }
+
+  /* Styling cards nicely for print media (white background, black/grey borders) */
+  .print-card-style {
+    background-color: #FFFFFF !important;
+    color: #000000 !important;
+    border: 1px solid #CBD5E1 !important;
+    box-shadow: none !important;
+    padding: 1.25rem !important;
+    border-radius: 6px !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  /* Force light backgrounds for print */
+  .print-bg-light {
+    background-color: #F8FAFC !important;
+    border-color: #E2E8F0 !important;
+    color: #0F172A !important;
+  }
+
+  /* Headings for print output */
+  .print-heading-main {
+    color: #000000 !important;
+    font-size: 22pt !important;
+    border-bottom: 3px solid #000000 !important;
+    padding-bottom: 6px !important;
+    margin-bottom: 4px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase;
+  }
+
+  .print-heading-sub {
+    color: #475569 !important;
+    font-size: 10pt !important;
+    margin-bottom: 1.5rem !important;
+    font-weight: 500;
+  }
+
+  .print-section-title {
+    color: #000000 !important;
+    font-size: 14pt !important;
+    border-bottom: 2px solid #475569 !important;
+    padding-bottom: 4px !important;
+    margin-top: 2rem !important;
+    margin-bottom: 1rem !important;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .print-section-subtitle {
+    color: #000000 !important;
+    font-size: 11pt !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.5rem !important;
+    font-weight: 600;
+  }
+
+  /* Tables in print */
+  table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin-top: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+
+  th {
+    background-color: #F1F5F9 !important;
+    color: #0F172A !important;
+    border: 1px solid #94A3B8 !important;
+    font-weight: 600 !important;
+    font-size: 8.5pt !important;
+    padding: 6px 8px !important;
+    text-align: left !important;
+  }
+
+  td {
+    background-color: #FFFFFF !important;
+    color: #334155 !important;
+    border: 1px solid #CBD5E1 !important;
+    font-size: 8.5pt !important;
+    padding: 6px 8px !important;
+  }
+
+  /* Convert grids during printing */
+  .print-grid-1 {
+    display: block !important;
+  }
+
+  .print-grid-2 {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+  }
+  
+  .print-grid-3 {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important;
+    gap: 1rem !important;
+  }
+
+  .print-text-dark {
+    color: #000000 !important;
+  }
+
+  .print-border-dark {
+    border-color: #94A3B8 !important;
+  }
+}
